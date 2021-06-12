@@ -7,73 +7,74 @@
     android:orientation="vertical"
     tools:context=".donorEnd">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="32dp"
-        android:text="Organization"
-        android:textSize="18sp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/organization"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:enabled="false"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="32dp"
+                android:text="Organization Addess"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="32dp"
-        android:text="Volunteer Assigned"
-        android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextTextPostalAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:enabled="false"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:text="@string/address" />
 
-    <EditText
-        android:id="@+id/volName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="32dp"
+                android:gravity="center_horizontal"
+                android:text="Volunteers"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="32dp"
-        android:text="Volunteer Phone"
-        android:textSize="18sp" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/volPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="phone" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="32dp"
-        android:text="Back" />
+                    <ListView
+                        android:id="@+id/volList"
+                        android:layout_width="match_parent"
+                        android:layout_height="421dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp">
+                    </ListView>
+                </LinearLayout>
+            </ScrollView>
+            <Button
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="32dp"
+                android:text="Back" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

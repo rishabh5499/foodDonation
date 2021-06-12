@@ -27,15 +27,6 @@ public class waitingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting_page);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(waitingPage.this, DonationPage.class);
-                startActivity(intent);
-                finish();
-            }
-        },1000);
-
         login = new login();
 
         try {
@@ -49,6 +40,22 @@ public class waitingPage extends AppCompatActivity {
         Intent src = getIntent();
         sourcestr = src.getStringExtra("source");
         userstr = src.getStringExtra("userType");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (userstr.equals("Donor")) {
+                    Intent intent = new Intent(waitingPage.this, donationDetails.class);
+                    startActivity(intent);
+                    finish();
+                } else if (userstr.equals("Volunteer")){
+                    Intent intent = new Intent(waitingPage.this, volunteerEnd.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        },1000);
+
         db = FirebaseDatabase.getInstance().getReference();
 
         if (sourcestr!= null && sourcestr.equals("signup")) {

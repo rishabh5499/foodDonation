@@ -81,7 +81,6 @@ public class editProfile extends AppCompatActivity {
         nameL.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
                 name.setEnabled(true);
                 name.setSelection(name. getText(). length());
                 name.requestFocus();
@@ -93,7 +92,6 @@ public class editProfile extends AppCompatActivity {
         phoneL.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
                 phone.setEnabled(true);
                 phone.setSelection(phone. getText(). length());
                 phone.requestFocus();
@@ -105,7 +103,6 @@ public class editProfile extends AppCompatActivity {
         addrL.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Working", Toast.LENGTH_SHORT).show();
                 addr.setEnabled(true);
                 addr.setSelection(addr. getText(). length());
                 addr.requestFocus();

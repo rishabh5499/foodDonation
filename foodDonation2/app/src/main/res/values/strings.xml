@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">foodDonation</string>
+    <string name="app_name">Food Care</string>
     <string name="title_activity_donation_page">DonationPage</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -11,4 +11,5 @@
     <string name="menu_editProfile">Edit Profile</string>
     <string name="menu_logout">Logout</string>
     <string name="drawer_name">Food Donation</string>
+    <string name="address">Food Care \n4th Cross, Matadakani Junction\nKadri, Mangalore</string>
 </resources>

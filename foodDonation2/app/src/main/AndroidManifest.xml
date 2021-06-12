@@ -9,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDonation">
-        <activity android:name=".donorEnd"></activity>
+        <activity android:name=".detailsList"></activity>
+        <activity android:name=".volunteerEnd" />
+        <activity android:name=".donationDetails" />
+        <activity android:name=".donorEnd" />
         <activity android:name=".waitingPage" />
-        <activity
-            android:name=".DonationPage"
-            android:label="@string/title_activity_donation_page"
-            android:theme="@style/Theme.FoodDonation.NoActionBar"></activity>
         <activity android:name=".editProfile" />
         <activity android:name=".auth.signUp" />
         <activity android:name=".landingPage" />
@@ -26,5 +25,5 @@
             </intent-filter>
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 </manifest>

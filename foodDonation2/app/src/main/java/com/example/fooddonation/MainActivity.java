@@ -82,17 +82,14 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String logintypestr = snapshot.child("loginType").getValue().toString();
-                            Toast.makeText(getApplicationContext(), typestr, Toast.LENGTH_SHORT).show();
 
                             if(logintypestr.equals(typestr)){
                                 Intent login = new Intent(MainActivity.this, waitingPage.class);
                                 login.putExtra("userType", typestr);
                                 startActivity(login);
                                 finish();
-                                Toast.makeText(getApplicationContext(), "Welcome. Will add proper page in next version", Toast.LENGTH_SHORT).show();
                             } else {
                                 FirebaseAuth.getInstance().signOut();
-//                                Toast.makeText(getApplicationContext(), "No records for "+typestr+" with entered email", Toast.LENGTH_SHORT).show();
                                 builder.setMessage("No records in "+typestr+" for entered credentials")
                                         .setCancelable(false)
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -128,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
                 } else{
                     typestr = "Volunteer";
                 }
-                Toast.makeText(getApplicationContext(), typestr, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -153,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                             if(!task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                             } else {
-//                                Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
