@@ -44,14 +44,18 @@ public class waitingPage extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (userstr.equals("Donor")) {
-                    Intent intent = new Intent(waitingPage.this, donationDetails.class);
-                    startActivity(intent);
-                    finish();
-                } else if (userstr.equals("Volunteer")){
-                    Intent intent = new Intent(waitingPage.this, volunteerEnd.class);
-                    startActivity(intent);
-                    finish();
+                try {
+                    if (userstr.equals("Donor")) {
+                        Intent intent = new Intent(waitingPage.this, donationDetails.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (userstr.equals("Volunteer")) {
+                        Intent intent = new Intent(waitingPage.this, volunteerEnd.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } catch (Exception e) {
+
                 }
             }
         },1000);

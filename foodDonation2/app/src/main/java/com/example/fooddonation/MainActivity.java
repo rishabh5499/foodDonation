@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fooddonation.adminPart.adminLogin;
 import com.example.fooddonation.auth.signUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText email, pass;
     TextView signup;
-    Button login, ok;
+    Button login, ok, admin;
     Switch type;
     String typestr;
     AlertDialog.Builder builder;
@@ -49,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         pass = (EditText)findViewById(R.id.password4);
         signup = findViewById(R.id.textView11);
         login = findViewById(R.id.button5);
-        ok = findViewById(R.id.button3);
+
+        ok = findViewById(R.id.button3Admin);
+        admin = findViewById(R.id.Admin);
         type = findViewById(R.id.switch1);
 
         builder = new AlertDialog.Builder(this);
@@ -57,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typestr=" ";
                 if(type.isChecked()){
+                    typestr=" ";
                     type.setText("Volunteer");
                     typestr = "Volunteer";
                     ok.setText("Volunteer");
@@ -149,7 +152,10 @@ public class MainActivity extends AppCompatActivity {
                             if(!task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                             } else {
-
+                                Intent login = new Intent(MainActivity.this, waitingPage.class);
+                                login.putExtra("userType", typestr);
+                                startActivity(login);
+                                finish();
                             }
                         }
                     });
@@ -168,11 +174,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent admin = new Intent(MainActivity.this, adminLogin.class);
+                startActivity(admin);
+            }
+        });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+//    }
 }

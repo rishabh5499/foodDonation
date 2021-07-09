@@ -26,7 +26,7 @@ public class donorEnd extends AppCompatActivity {
 
     Button back;
     DatabaseReference db;
-    String UID;
+    String UID;  //can delete this reference
     details details;
     ListView volList;
     ArrayList<String> volunteerList, uidlist;
@@ -39,7 +39,7 @@ public class donorEnd extends AppCompatActivity {
 
         volunteerList = new ArrayList<>();
         uidlist = new ArrayList<>();
-        volList = findViewById(R.id.volList);
+        volList = findViewById(R.id.volListAdmin);
         registerForContextMenu(volList);
         try {
             UID = FirebaseAuth.getInstance().getCurrentUser().getUid();

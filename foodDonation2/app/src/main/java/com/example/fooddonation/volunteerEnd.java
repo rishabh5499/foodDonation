@@ -26,10 +26,11 @@ public class volunteerEnd extends AppCompatActivity {
 
     Button logOut;
     DatabaseReference db;
-    String UID, volUid;
-    details details;
+    String UID;
+    int countstr;
     ListView donList;
     ArrayList<String> donorlist, uidlist;
+    ArrayList<Integer> indexList;
     ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class volunteerEnd extends AppCompatActivity {
 
         donorlist = new ArrayList<>();
         uidlist = new ArrayList<>();
+        indexList = new ArrayList<>();
         donList = findViewById(R.id.donList);
         registerForContextMenu(donList);
         try {
@@ -45,7 +47,6 @@ public class volunteerEnd extends AppCompatActivity {
         } catch (Exception e){
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
-        details = new details();
 
         logOut = findViewById(R.id.button9);
 
@@ -59,8 +60,18 @@ public class volunteerEnd extends AppCompatActivity {
                     for(DataSnapshot ds : snapshot.getChildren()) {
                         String volName = ds.child("name").getValue().toString();
                         String volUid = ds.getKey();
-                        donorlist.add(volName);
-                        uidlist.add(volUid);
+                        countstr = (int) (ds.getChildrenCount()-5);
+
+                        for(int i=1; i<=countstr; i++) {
+                            String volNeed = ds.child(String.valueOf(i)).child("volunteerNeed").getValue().toString();
+                            String number = ds.child(String.valueOf(i)).child("platesno").getValue().toString();
+
+                            if(volNeed.equals("Yes")) {
+                                donorlist.add(volName+" - "+number+" plates");
+                                uidlist.add(volUid);
+                                indexList.add(i);
+                            }
+                        }
                     }
                     adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, donorlist);
                     donList.setAdapter(adapter);
@@ -80,7 +91,7 @@ public class volunteerEnd extends AppCompatActivity {
                 for(int j = 0; j< donorlist.size(); j++){
                     if(donorlist.get(j).equals(selectedItem)){
                         String volUid = uidlist.get(j);
-                        goAhead(volUid);
+                        goAhead(volUid, indexList.get(i));
                     } else{
 //                        Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     }
@@ -98,10 +109,11 @@ public class volunteerEnd extends AppCompatActivity {
             }
         });
     }
-    public void goAhead(String volUid){
+    public void goAhead(String volUid, int i){
         Intent disp = new Intent(volunteerEnd.this, detailsList.class);
         disp.putExtra("src", "VolunteerPage");
         disp.putExtra("name", volUid);
+        disp.putExtra("index", String.valueOf(i));
         startActivity(disp);
     }
 }

@@ -38,7 +38,7 @@
                 android:text="@string/address" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/textView20Admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
@@ -58,7 +58,7 @@
                     android:orientation="vertical">
 
                     <ListView
-                        android:id="@+id/volList"
+                        android:id="@+id/volListAdmin"
                         android:layout_width="match_parent"
                         android:layout_height="421dp"
                         android:layout_marginLeft="32dp"

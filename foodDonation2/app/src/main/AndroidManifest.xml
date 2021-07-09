@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fooddonation">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDonation">
-        <activity android:name=".detailsList"></activity>
+        <activity android:name=".adminPart.adminLogin"/>
+        <activity android:name=".adminPart.adminMainActivity"/>
+        <activity android:name=".adminPart.adminDetailsList"/>
+        <activity android:name=".adminPart.adminEdit"/>
+        <activity android:name=".adminPart.adminList"/>
+        <activity android:name=".detailsList" />
         <activity android:name=".volunteerEnd" />
         <activity android:name=".donationDetails" />
         <activity android:name=".donorEnd" />
@@ -25,5 +32,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
 </manifest>

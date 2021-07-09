@@ -18,17 +18,45 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginRight="32dp"
                 android:gravity="center_horizontal"
-                android:text="Volunteer Name" />
+                android:text="Number of Plates" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/VolName"
+                android:id="@+id/platesNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/platsNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView5Admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="32dp"
+                android:gravity="center_horizontal"
+                android:text="Name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/VolNameAdmin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +67,7 @@
                 app:endIconMode="custom">
 
                 <EditText
-                    android:id="@+id/editTextVolName"
+                    android:id="@+id/editTextVolNameAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false" />
@@ -47,17 +75,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textView6Admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="32dp"
                 android:gravity="center_horizontal"
-                android:text="Volunteer Phone" />
+                android:text="Phone" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/VolPhone"
+                android:id="@+id/VolPhoneAdmin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +97,7 @@
                 app:endIconMode="custom">
 
                 <EditText
-                    android:id="@+id/editTextVolPhone"
+                    android:id="@+id/editTextVolPhoneAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false" />
@@ -77,17 +105,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textView14Admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="32dp"
                 android:gravity="center_horizontal"
-                android:text="Volunteer Email" />
+                android:text="Email" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/VolEmail"
+                android:id="@+id/VolEmailAdmin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +127,7 @@
                 app:endIconMode="custom">
 
                 <EditText
-                    android:id="@+id/editTextVolEmail"
+                    android:id="@+id/editTextVolEmailAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false" />
@@ -107,17 +135,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView15Admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="32dp"
                 android:gravity="center_horizontal"
-                android:text="Volunteer Address" />
+                android:text="Address" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/VolAddress"
+                android:id="@+id/VolAddressAdmin"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +156,7 @@
                 app:endIconMode="custom">
 
                 <EditText
-                    android:id="@+id/editTextVolAddress"
+                    android:id="@+id/editTextVolAddressAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false" />
@@ -136,13 +164,22 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/buttonHome"
+                android:id="@+id/buttonHomeAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="32dp"
                 android:text="Home" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="32dp"
+                android:text="Unpicked" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

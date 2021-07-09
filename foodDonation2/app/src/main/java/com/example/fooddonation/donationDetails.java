@@ -44,26 +44,30 @@ public class donationDetails extends AppCompatActivity {
             startActivity(refresh);
             Toast.makeText(getApplicationContext(), "Try again",  Toast.LENGTH_SHORT).show();
         }
+        try {
+            db = FirebaseDatabase.getInstance().getReference().child(UID);
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    countstr = String.valueOf(snapshot.getChildrenCount() - 4);
+                }
 
-        db = FirebaseDatabase.getInstance().getReference().child(UID);
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                countstr = String.valueOf(snapshot.getChildrenCount()-4);
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                }
+            });
+        } catch (Exception e){
+            Intent home = new Intent(donationDetails.this, MainActivity.class);
+            startActivity(home);
+        }
 
         platesno = findViewById(R.id.editTextPlates);
         locality = findViewById(R.id.editTextLocality);
 
         builder = new AlertDialog.Builder(this);
 
-        rg = findViewById(R.id.rg);
+        rg = findViewById(R.id.rgAdmin);
         donate = findViewById(R.id.donateBtn);
         showdetails = findViewById(R.id.button7);
         logout = findViewById(R.id.logOut);
@@ -75,15 +79,17 @@ public class donationDetails extends AppCompatActivity {
                 String platestr = platesno.getText().toString().trim();
                 String localitystr = locality.getText().toString().trim();
 
-                details.setPlatesno(platestr);
-                details.setLocality(localitystr);
-                db.child(countstr).setValue(details);
-
                 int rbtnId = rg.getCheckedRadioButtonId();
 
                 if(rbtnId!=-1) {
                     rb = findViewById(rbtnId);
                     rbtnstr = rb.getText().toString();
+
+                    details.setPlatesno(platestr);
+                    details.setLocality(localitystr);
+                    details.setVolunteerNeed(rbtnstr);
+                    details.setPicked("No");
+                    db.child(countstr).setValue(details);
 
                     builder.setMessage("Thank You for donating")
                             .setCancelable(false)

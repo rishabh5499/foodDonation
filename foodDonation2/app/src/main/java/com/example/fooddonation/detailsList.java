@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,10 +25,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class detailsList extends AppCompatActivity {
 
-    EditText name, email, phone, address;
-    TextInputLayout emailBtn, phoneBtn;
+    EditText name, email, phone, address, platesNu;
+    TextView plates, addr;
+    TextInputLayout emailBtn, phoneBtn, platesNum;
     DatabaseReference db;
-    Button home;
+    details details;
+    Button home, edit;
     String namestr, phonestr, addressstr, emailstr;
     private static final int REQUEST_CALL = 1;
 
@@ -36,24 +39,46 @@ public class detailsList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_list);
 
-        name = findViewById(R.id.editTextVolName);
-        email = findViewById(R.id.editTextVolEmail);
-        phone = findViewById(R.id.editTextVolPhone);
-        address = findViewById(R.id.editTextVolAddress);
-        home = findViewById(R.id.buttonHome);
+        plates = findViewById(R.id.textView23);
+        addr = findViewById(R.id.textView15Admin);
 
-        emailBtn = findViewById(R.id.VolEmail);
-        phoneBtn = findViewById(R.id.VolPhone);
+        details = new details();
+
+        platesNu = findViewById(R.id.platsNum);
+        platesNum = findViewById(R.id.platesNumber);
+        name = findViewById(R.id.editTextVolNameAdmin);
+        email = findViewById(R.id.editTextVolEmailAdmin);
+        phone = findViewById(R.id.editTextVolPhoneAdmin);
+        address = findViewById(R.id.editTextVolAddressAdmin);
+
+        home = findViewById(R.id.buttonHomeAdmin);
+        edit = findViewById(R.id.button8);
+
+        emailBtn = findViewById(R.id.VolEmailAdmin);
+        phoneBtn = findViewById(R.id.VolPhoneAdmin);
 
         Intent volUid = getIntent();
         String volUidStr = volUid.getStringExtra("name");
         String srcStr = volUid.getStringExtra("src");
+        String index = volUid.getStringExtra("index");
+
+        if(srcStr.equals("DonorPage")) {
+            platesNu.setVisibility(View.INVISIBLE);
+            plates.setVisibility(View.INVISIBLE);
+            edit.setVisibility(View.INVISIBLE);
+        } else if(srcStr.equals("VolunteerPage")){
+            platesNu.setVisibility(View.VISIBLE);
+            plates.setVisibility(View.VISIBLE);
+            platesNum.setVisibility(View.VISIBLE);
+            edit.setVisibility(View.VISIBLE);
+            addr.setText("Locality");
+        }
 
         db = FirebaseDatabase.getInstance().getReference().child(volUidStr);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
+                if(snapshot.exists()) {
                     namestr = snapshot.child("name").getValue().toString();
                     phonestr = snapshot.child("phone").getValue().toString();
                     addressstr = snapshot.child("address").getValue().toString();
@@ -61,10 +86,24 @@ public class detailsList extends AppCompatActivity {
 
                     name.setText(namestr);
                     phone.setText(phonestr);
-                    address.setText(addressstr);
                     email.setText(emailstr);
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+                    if(srcStr.equals("VolunteerPage")){
+                        String locality = snapshot.child(index).child("locality").getValue().toString();
+                        String number = snapshot.child(index).child("platesno").getValue().toString();
+                        String picked = snapshot.child(index).child("picked").getValue().toString();
+
+                        platesNu.setText(number);
+                        address.setText(locality);
+                        if(picked.equals("Yes")) {
+                            edit.setEnabled(false);
+                            edit.setText("Picked Up");
+                        } else if(picked.equals("No")){
+                            edit.setText("Unpicked");
+                        }
+                    } else {
+                        address.setText(addressstr);
+                    }
                 }
             }
 
@@ -84,6 +123,35 @@ public class detailsList extends AppCompatActivity {
                     Intent home = new Intent(detailsList.this, volunteerEnd.class);
                     startActivity(home);
                 }
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String locality = snapshot.child(index).child("locality").getValue().toString();
+                        String number = snapshot.child(index).child("platesno").getValue().toString();
+                        String picked = snapshot.child(index).child("picked").getValue().toString();
+                        String volunteerNeed = snapshot.child(index).child("volunteerNeed").getValue().toString();
+
+                        details.setLocality(locality);
+                        details.setPlatesno(number);
+                        details.setVolunteerNeed(volunteerNeed);
+                        if(picked.equals("No")){
+                            details.setPicked("Yes");
+                            edit.setText("Picked Up");
+                        }
+                        db.child(index).setValue(details);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

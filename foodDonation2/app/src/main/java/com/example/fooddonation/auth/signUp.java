@@ -77,6 +77,7 @@ public class signUp extends AppCompatActivity {
                                     Intent intent = new Intent(signUp.this, waitingPage.class);
                                     intent.putExtra("source", "signup");
                                     intent.putExtra("type", typestr);
+                                    intent.putExtra("userType", typestr);
                                     intent.putExtra("name", namestr);
                                     intent.putExtra("phone", phonestr);
                                     intent.putExtra("address", addresstr);
