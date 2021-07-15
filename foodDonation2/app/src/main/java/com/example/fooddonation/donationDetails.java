@@ -25,7 +25,7 @@ public class donationDetails extends AppCompatActivity {
 
     details details;
     DatabaseReference db;
-    EditText platesno, locality;
+    EditText platesno, locality, foodType;
     RadioGroup rg;
     RadioButton rb;
     Button donate, logout, editProfile, showdetails;
@@ -64,6 +64,7 @@ public class donationDetails extends AppCompatActivity {
 
         platesno = findViewById(R.id.editTextPlates);
         locality = findViewById(R.id.editTextLocality);
+        foodType = findViewById(R.id.editTextFoodType);
 
         builder = new AlertDialog.Builder(this);
 
@@ -78,6 +79,7 @@ public class donationDetails extends AppCompatActivity {
             public void onClick(View v) {
                 String platestr = platesno.getText().toString().trim();
                 String localitystr = locality.getText().toString().trim();
+                String foodTypestr = foodType.getText().toString().trim();
 
                 int rbtnId = rg.getCheckedRadioButtonId();
 
@@ -88,6 +90,7 @@ public class donationDetails extends AppCompatActivity {
                     details.setPlatesno(platestr);
                     details.setLocality(localitystr);
                     details.setVolunteerNeed(rbtnstr);
+                    details.setFoodType(foodTypestr);
                     details.setPicked("No");
                     db.child(countstr).setValue(details);
 

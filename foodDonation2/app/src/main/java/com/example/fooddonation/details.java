@@ -5,6 +5,15 @@ public class details {
     String locality;
     String volunteerNeed;
     String picked;
+    String foodType;
+
+    public String getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
+    }
 
     public String getPicked() {
         return picked;

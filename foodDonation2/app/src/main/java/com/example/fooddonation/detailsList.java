@@ -25,9 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class detailsList extends AppCompatActivity {
 
-    EditText name, email, phone, address, platesNu;
-    TextView plates, addr;
-    TextInputLayout emailBtn, phoneBtn, platesNum;
+    EditText name, email, phone, address, platesNu, fdType;
+    TextView plates, addr, foodTpe;
+    TextInputLayout emailBtn, phoneBtn, platesNum, foodType;
     DatabaseReference db;
     details details;
     Button home, edit;
@@ -41,6 +41,7 @@ public class detailsList extends AppCompatActivity {
 
         plates = findViewById(R.id.textView23);
         addr = findViewById(R.id.textView15Admin);
+        foodTpe = findViewById(R.id.textView14);
 
         details = new details();
 
@@ -50,6 +51,8 @@ public class detailsList extends AppCompatActivity {
         email = findViewById(R.id.editTextVolEmailAdmin);
         phone = findViewById(R.id.editTextVolPhoneAdmin);
         address = findViewById(R.id.editTextVolAddressAdmin);
+        foodType = findViewById(R.id.VolFoodType);
+        fdType = findViewById(R.id.editTextFoodType);
 
         home = findViewById(R.id.buttonHomeAdmin);
         edit = findViewById(R.id.button8);
@@ -66,11 +69,17 @@ public class detailsList extends AppCompatActivity {
             platesNu.setVisibility(View.INVISIBLE);
             plates.setVisibility(View.INVISIBLE);
             edit.setVisibility(View.INVISIBLE);
+            foodType.setVisibility(View.INVISIBLE);
+            fdType.setVisibility(View.INVISIBLE);
+            foodTpe.setVisibility(View.INVISIBLE);
         } else if(srcStr.equals("VolunteerPage")){
             platesNu.setVisibility(View.VISIBLE);
             plates.setVisibility(View.VISIBLE);
             platesNum.setVisibility(View.VISIBLE);
             edit.setVisibility(View.VISIBLE);
+            foodType.setVisibility(View.VISIBLE);
+            fdType.setVisibility(View.VISIBLE);
+            foodTpe.setVisibility(View.VISIBLE);
             addr.setText("Locality");
         }
 
@@ -92,9 +101,11 @@ public class detailsList extends AppCompatActivity {
                         String locality = snapshot.child(index).child("locality").getValue().toString();
                         String number = snapshot.child(index).child("platesno").getValue().toString();
                         String picked = snapshot.child(index).child("picked").getValue().toString();
+                        String foodType = snapshot.child(index).child("foodType").getValue().toString();
 
                         platesNu.setText(number);
                         address.setText(locality);
+                        fdType.setText(foodType);
                         if(picked.equals("Yes")) {
                             edit.setEnabled(false);
                             edit.setText("Picked Up");
@@ -136,10 +147,12 @@ public class detailsList extends AppCompatActivity {
                         String number = snapshot.child(index).child("platesno").getValue().toString();
                         String picked = snapshot.child(index).child("picked").getValue().toString();
                         String volunteerNeed = snapshot.child(index).child("volunteerNeed").getValue().toString();
+                        String foodType = snapshot.child(index).child("foodType").getValue().toString();
 
                         details.setLocality(locality);
                         details.setPlatesno(number);
                         details.setVolunteerNeed(volunteerNeed);
+                        details.setFoodType(foodType);
                         if(picked.equals("No")){
                             details.setPicked("Yes");
                             edit.setText("Picked Up");

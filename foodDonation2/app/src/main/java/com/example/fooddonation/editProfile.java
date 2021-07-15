@@ -118,17 +118,16 @@ public class editProfile extends AppCompatActivity {
                 String phone_new_str = phone.getText().toString().trim();
                 String addr_new_str = addr.getText().toString().trim();
 
-                login.setName(name_new_str);
-                login.setPhone(phone_new_str);
-                login.setAddress(addr_new_str);
-                login.setLoginType(logintypestr);
-                login.setEmail(emailstr);
-
-                db.setValue(login);
+                db.child("name").setValue(name_new_str);
+                db.child("phone").setValue(phone_new_str);
+                db.child("address").setValue(addr_new_str);
 
                 name.setEnabled(false);
                 phone.setEnabled(false);
                 addr.setEnabled(false);
+
+                Intent back = new Intent(editProfile.this, donationDetails.class);
+                startActivity(back);
             }
         });
     }
